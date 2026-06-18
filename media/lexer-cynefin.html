@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexer — Cynefin Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #080E1A;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    padding: 40px 20px;
+  }
+
+  .canvas {
+    width: 960px;
+    background: #0D1520;
+    border: 1px solid #1E2D42;
+    padding: 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background grid */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #1E2D42;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 5px;
+    color: #C8392B;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #F0EDE8;
+    letter-spacing: -0.5px;
+  }
+
+  .title span { color: #C8392B; }
+
+  .subtitle {
+    font-size: 9px;
+    color: #3A5068;
+    letter-spacing: 2px;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 8px;
+    color: #3A5068;
+    letter-spacing: 1px;
+    line-height: 1.8;
+  }
+
+  /* Main layout: Cynefin left + Flow right */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  /* ── CYNEFIN MAP ── */
+  .cynefin-section {}
+
+  .section-label {
+    font-size: 7px;
+    letter-spacing: 4px;
+    color: #3A5068;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1E2D42;
+  }
+
+  .cynefin-map {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+  }
+
+  .cynefin-map svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── ENGAGEMENT FLOW ── */
+  .flow-section {}
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-step {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: -8px;
+    width: 1px;
+    background: #1E2D42;
+  }
+
+  .flow-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-content {
+    padding-bottom: 20px;
+    flex: 1;
+  }
+
+  .flow-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .flow-desc {
+    font-size: 8.5px;
+    color: #5A7A94;
+    line-height: 1.6;
+  }
+
+  .flow-tag {
+    display: inline-block;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    padding: 2px 7px;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  /* Step colors */
+  .step-0 .flow-num { background: #1E2D42; color: #5A7A94; border: 1px solid #2A3D52; }
+  .step-0 .flow-title { color: #5A7A94; }
+  .step-0 .flow-tag { background: #1E2D42; color: #5A7A94; }
+
+  .step-1 .flow-num { background: #1A2E1A; color: #4ADE80; border: 1px solid #2A4A2A; }
+  .step-1 .flow-title { color: #4ADE80; }
+  .step-1 .flow-tag { background: #1A2E1A; color: #4ADE80; }
+
+  .step-2 .flow-num { background: #1E1A2E; color: #818CF8; border: 1px solid #2A2A4A; }
+  .step-2 .flow-title { color: #818CF8; }
+  .step-2 .flow-tag { background: #1E1A2E; color: #818CF8; }
+
+  .step-3 .flow-num { background: #2E1A1A; color: #C8392B; border: 1px solid #4A2A2A; }
+  .step-3 .flow-title { color: #C8392B; }
+  .step-3 .flow-tag { background: #2E1A1A; color: #C8392B; }
+
+  .step-4 .flow-num { background: #1A2A2E; color: #22D3EE; border: 1px solid #2A4A4A; }
+  .step-4 .flow-title { color: #22D3EE; }
+  .step-4 .flow-tag { background: #1A2A2E; color: #22D3EE; }
+
+  /* ── BOTTOM: PRACTICES ── */
+  .practices {
+    border-top: 1px solid #1E2D42;
+    padding-top: 24px;
+  }
+
+  .practices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .practice {
+    border: 1px solid #1E2D42;
+    padding: 14px 16px;
+    position: relative;
+  }
+
+  .practice-type {
+    font-size: 6.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .practice-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #F0EDE8;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .practice-desc {
+    font-size: 7.5px;
+    color: #5A7A94;
+    line-height: 1.5;
+  }
+
+  .practice.good { border-left: 3px solid #4ADE80; }
+  .practice.good .practice-type { color: #4ADE80; }
+
+  .practice.best { border-left: 3px solid #818CF8; }
+  .practice.best .practice-type { color: #818CF8; }
+
+  .practice.novel { border-left: 3px solid #C8392B; }
+  .practice.novel .practice-type { color: #C8392B; }
+
+  .practice.emergent { border-left: 3px solid #22D3EE; }
+  .practice.emergent .practice-type { color: #22D3EE; }
+
+  /* Footer */
+  .footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #1E2D42;
+    padding-top: 16px;
+  }
+
+  .footer-left {
+    font-size: 7.5px;
+    color: #2A3D52;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .footer-right {
+    font-size: 7px;
+    color: #2A3D52;
+    letter-spacing: 2px;
+    text-align: right;
+  }
+
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="eyebrow">Lexer Integrations · Fondation Méthodologique</div>
+      <div class="title">CYNEFIN <span>×</span> SHADOW-ORGAN</div>
+      <div class="subtitle">le bon outil pour le bon type de problème</div>
+    </div>
+    <div class="header-right">
+      LEXER INTEGRATIONS<br>
+      Duomo Group · Toulouse<br>
+      lexerintegrations.com
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main">
+
+    <!-- CYNEFIN MAP -->
+    <div class="cynefin-section">
+      <div class="section-label">Cartographie Cynefin</div>
+      <div class="cynefin-map">
+        <svg viewBox="0 0 400 400">
+          <!-- Quadrant backgrounds -->
+          <!-- Simple -->
+          <rect x="210" y="10" width="180" height="180" fill="#1A2E1A" opacity="0.4" rx="2"/>
+          <!-- Complicated -->
+          <rect x="10" y="10" width="180" height="180" fill="#1E1A2E" opacity="0.4" rx="2"/>
+          <!-- Complex — HIGHLIGHTED -->
+          <rect x="10" y="210" width="180" height="180" fill="#2E1A1A" opacity="0.7" rx="2"/>
+          <rect x="10" y="210" width="180" height="180" fill="none" stroke="#C8392B" stroke-width="1.5" rx="2"/>
+          <!-- Chaotic -->
+          <rect x="210" y="210" width="180" height="180" fill="#1A2A2E" opacity="0.4" rx="2"/>
+
+          <!-- Center circle — Disorder -->
+          <circle cx="200" cy="200" r="28" fill="#0D1520" stroke="#1E2D42" stroke-width="1.5"/>
+          <text x="200" y="196" textAnchor="middle" fill="#3A5068" fontSize="8" fontFamily="DM Mono">DIS</text>
+          <text x="200" y="208" textAnchor="middle" fill="#3A5068" fontSize="8" fontFamily="DM Mono">ORDER</text>
+
+          <!-- Dividing lines -->
+          <line x1="200" y1="10" x2="200" y2="390" stroke="#1E2D42" strokeWidth="1"/>
+          <line x1="10" y1="200" x2="390" y2="200" stroke="#1E2D42" strokeWidth="1"/>
+
+          <!-- Quadrant labels -->
+          <!-- Simple -->
+          <text x="300" y="50" textAnchor="middle" fill="#4ADE80" fontSize="10" fontFamily="Syne" fontWeight="700">SIMPLE</text>
+          <text x="300" y="65" textAnchor="middle" fill="#3A5068" fontSize="7" fontFamily="DM Mono">sense → categorize</text>
+          <text x="300" y="78" textAnchor="middle" fill="#3A5068" fontSize="7" fontFamily="DM Mono">→ respond</text>
+          <text x="300" y="100" textAnchor="middle" fill="#2A4A2A" fontSize="8" fontFamily="DM Mono">best practice</text>
+          <text x="300" y="130" textAnchor="middle" fill="#2A3D2A" fontSize="7" fontFamily="DM Mono" fontStyle="italic">standard IT projects</text>
+
+          <!-- Complicated -->
+          <text x="100" y="50" textAnchor="middle" fill="#818CF8" fontSize="10" fontFamily="Syne" fontWeight="700">COMPLIQUÉ</text>
+          <text x="100" y="65" textAnchor="middle" fill="#3A5068" fontSize="7" fontFamily="DM Mono">sense → analyze</text>
+          <text x="100" y="78" textAnchor="middle" fill="#3A5068" fontSize="7" fontFamily="DM Mono">→ respond</text>
+          <text x="100" y="100" textAnchor="middle" fill="#2A2A4A" fontSize="8" fontFamily="DM Mono">good practice</text>
+          <text x="100" y="130" textAnchor="middle" fill="#2A2A4A" fontSize="7" fontFamily="DM Mono" fontStyle="italic">expert consultant</text>
+
+          <!-- Complex — LEXER ZONE -->
+          <text x="100" y="248" textAnchor="middle" fill="#C8392B" fontSize="10" fontFamily="Syne" fontWeight="700">COMPLEXE</text>
+          <text x="100" y="263" textAnchor="middle" fill="#C8392B" fontSize="7" fontFamily="DM Mono" opacity="0.7">probe → sense</text>
+          <text x="100" y="276" textAnchor="middle" fill="#C8392B" fontSize="7" fontFamily="DM Mono" opacity="0.7">→ respond</text>
+          <text x="100" y="300" textAnchor="middle" fill="#C8392B" fontSize="8" fontFamily="DM Mono">emergent practice</text>
+          <text x="100" y="320" textAnchor="middle" fill="#8B1A10" fontSize="8" fontFamily="Syne" fontWeight="700">← LEXER ZONE</text>
+          <text x="100" y="340" textAnchor="middle" fill="#8B1A10" fontSize="7" fontFamily="DM Mono" fontStyle="italic">legacy · tribal knowledge</text>
+          <text x="100" y="355" textAnchor="middle" fill="#8B1A10" fontSize="7" fontFamily="DM Mono" fontStyle="italic">ghost dependencies</text>
+
+          <!-- Chaotic -->
+          <text x="300" y="248" textAnchor="middle" fill="#22D3EE" fontSize="10" fontFamily="Syne" fontWeight="700">CHAOTIQUE</text>
+          <text x="300" y="263" textAnchor="middle" fill="#3A5068" fontSize="7" fontFamily="DM Mono">act → sense</text>
+          <text x="300" y="276" textAnchor="middle" fill="#3A5068" fontSize="7" fontFamily="DM Mono">→ respond</text>
+          <text x="300" y="300" textAnchor="middle" fill="#1A4A4A" fontSize="8" fontFamily="DM Mono">novel practice</text>
+          <text x="300" y="330" textAnchor="middle" fill="#1A3A3A" fontSize="7" fontFamily="DM Mono" fontStyle="italic">crisis response</text>
+
+          <!-- Arrow from Complex toward Simple — migration path -->
+          <path d="M 185 215 Q 200 175 215 185" fill="none" stroke="#C8392B" strokeWidth="1" strokeDasharray="4 3" opacity="0.5"/>
+          <polygon points="215,178 220,190 208,188" fill="#C8392B" opacity="0.5"/>
+          <text x="210" y="170" fill="#C8392B" fontSize="6.5" fontFamily="DM Mono" opacity="0.6">migration</text>
+          <text x="210" y="180" fill="#C8392B" fontSize="6.5" fontFamily="DM Mono" opacity="0.6">réussie →</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENT FLOW -->
+    <div class="flow-section">
+      <div class="section-label">Protocole d'engagement Lexer</div>
+      <div class="flow">
+
+        <div class="flow-step step-0">
+          <div class="flow-num">0</div>
+          <div class="flow-content">
+            <div class="flow-title">Cynefin Assessment</div>
+            <div class="flow-desc">2h avec le CTO. On positionne le système dans le framework. Compliqué → l'expert suffit. Complexe → Lexer est nécessaire. Ce diagnostic seul change la conversation.</div>
+            <div class="flow-tag">gratuit · 2h · décision go/no-go</div>
+          </div>
+        </div>
+
+        <div class="flow-step step-1">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <div class="flow-title">Forensic Mapping — SYNAPSE</div>
+            <div class="flow-desc">Probe contrôlé dans le système. Cartographie des dépendances visibles et fantômes. Identification de la Connaissance Tribale. Calcul de la Fonction de Fracture.</div>
+            <div class="flow-tag">forfait 4 500€ · 5 jours · livrable : carte de fracture</div>
+          </div>
+        </div>
+
+        <div class="flow-step step-2">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <div class="flow-title">Isolation Galvanique</div>
+            <div class="flow-desc">Découplage des modules critiques avant toute intervention. Stabilisation de l'environnement. Aucun système sous tension ne reçoit d'intervention directe.</div>
+            <div class="flow-tag">inclus dans phase 3 · prérequis absolu</div>
+          </div>
+        </div>
+
+        <div class="flow-step step-3">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <div class="flow-title">Shadow-Organ Protocol</div>
+            <div class="flow-desc">Miroir → Canari → Zero-Rupture. Le nouvel organe tourne en parallèle, validé par SYNAPSE en temps réel. Rollback instantané si anomalie. L'utilisateur ne perçoit rien.</div>
+            <div class="flow-tag">TJM 550€ · durée variable · zéro arrêt</div>
+          </div>
+        </div>
+
+        <div class="flow-step step-4">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <div class="flow-title">Système en domaine Compliqué</div>
+            <div class="flow-desc">Migration réussie. Le système est maintenant lisible, documenté, sans dépendances fantômes. Il peut être géré par des experts standards. Lexer se retire.</div>
+            <div class="flow-tag">transfert de connaissance · documentation · clôture</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRACTICES -->
+  <div class="practices">
+    <div class="section-label">Niveau de pratique par phase — Cynefin</div>
+    <div class="practices-grid">
+
+      <div class="practice good">
+        <div class="practice-type">Good Practice</div>
+        <div class="practice-name">Forensic Mapping</div>
+        <div class="practice-desc">Cartographie des systèmes existants. Pratique établie, reproductible, améliorée par l'expérience. SYNAPSE en est l'implémentation propriétaire.</div>
+      </div>
+
+      <div class="practice best">
+        <div class="practice-type">Best Practice</div>
+        <div class="practice-name">Isolation Galvanique</div>
+        <div class="practice-desc">Découplage avant intervention. Pattern connu en ingénierie critique. Lexer l'applique systématiquement là où les autres l'omettent sous pression calendaire.</div>
+      </div>
+
+      <div class="practice novel">
+        <div class="practice-type">Novel Practice</div>
+        <div class="practice-name">Shadow-Organ Protocol</div>
+        <div class="practice-desc">Parallélisation + validation temps réel + rollback instantané. Synthèse originale de patterns connus appliquée au legacy complexe. Méthodologie propriétaire Lexer.</div>
+      </div>
+
+      <div class="practice emergent">
+        <div class="practice-type">Emergent Practice</div>
+        <div class="practice-name">Cynefin Assessment</div>
+        <div class="practice-desc">Diagnostiquer le type de problème avant de choisir l'outil. Pratique émergente dans l'IT — rare chez les ESN. Premier différenciateur Lexer dans la conversation client.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      "Les migrations échouent parce qu'on traite un problème complexe avec des outils conçus pour le compliqué."<br>
+      Lexer Integrations — Précision dans la Fracture
+    </div>
+    <div class="footer-right">
+      LEXER INTEGRATIONS<br>
+      DUOMO GROUP · 2026<br>
+      lexerintegrations.com
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
