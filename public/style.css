@@ -197,8 +197,8 @@ nav{
 }
 
 /* Fallback base color states placeholder layers representing core themes */
-.slide-1 { background-image: url('../../media/lex_int-off.jpeg'); }
-.slide-2 { background-image: url('../../media/lexer_int-on.jpeg'); }
+.slide-1 { background-image: url('./media/lex_int-off.jpeg'); }
+.slide-2 { background-image: url('./media/lexer_int-on.jpeg'); }
 
 @keyframes slideRightGallery {
   0% { transform: translateX(-50%); }
