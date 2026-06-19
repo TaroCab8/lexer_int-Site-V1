@@ -398,31 +398,32 @@
 <script src="./app.js"></script>
 
 <script>
-  // 1. Déclare l'URL de ton Worker API que tu viens de copier
+  // 1. L'URL unique et active de ton infrastructure Cloudflare Worker
   const WORKER_URL = "https://lexerintegrations.lautacabrera.workers.dev";
 
-  // 2. On écoute la soumission de ton formulaire de diagnostic
+  // 2. Interception de ton formulaire réel : id="runtime-diagnostic-form"
   document.getElementById('runtime-diagnostic-form').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Bloque le rafraîchissement natif de la page
+    event.preventDefault(); // Bloque le rechargement forcé de la page HTML
 
-    // 3. Extraction dynamique des données du formulaire (Structure fractale)
-    const selectedIndustry = document.querySelector('input[name="targetIndustry"]:checked')?.value;
-    const selectedValueStream = document.getElementById('value-stream-select')?.value;
-    
-    // Exemple pour récupérer des cases à cocher multiples (ERP, MES...)
-    const selectedSystems = Array.from(document.querySelectorAll('input[targetSystem="systems"]:checked'))
-                                 .map(checkbox => checkbox.value);
+    console.log("Formulaire détecté. Extraction des métadonnées en cours...");
 
-    // 4. Construction du package de données (Strictement Anonyme - Zéro PII)
+    // 3. Extraction chirurgicale basée sur les attributs 'name' de TON formulaire
+    const userEmail = document.querySelector('input[name="email"]').value;
+    const selectedIndustry = document.querySelector('select[name="targetIndustry"]').value;
+    const selectedSystem = document.querySelector('select[name="targetSystem"]').value;
+    const userNotes = document.querySelector('textarea[name="notes"]').value;
+
+    // 4. Packaging des données pour ton Worker
     const payload = {
+      email: userEmail,
       industry: selectedIndustry,
-      value_stream: selectedValueStream,
-      systems: selectedSystems,
-      timestamp_client: new Date().toISOString()
+      system: selectedSystem,
+      notes: userNotes
     };
 
     try {
-      // 5. Expédition de la requête vers l'infrastructure Edge de Cloudflare
+      console.log("Envoi du payload JSON au Worker...");
+
       const response = await fetch(WORKER_URL, {
         method: 'POST',
         headers: {
@@ -432,23 +433,20 @@
       });
 
       if (!response.ok) {
-        throw new Error(`Erreur réseau : ${response.status}`);
+        throw new Error(`Erreur réseau Cloudflare : ${response.status}`);
       }
 
       const result = await response.json();
 
-      // 6. Traitement du retour de l'API
       if (result.success) {
-        // Redirection ou affichage du rapport d'architecture basé sur l'ID anonyme
-        alert(`Succès ! Votre diagnostic d'architecture a été enregistré sous l'identifiant : ${result.diagnostic_id}`);
-        
-        // Exemple de redirection future vers la page de scoring :
-        // window.location.href = `/report.html?id=${result.diagnostic_id}`;
+        console.log("Enregistrement validé avec succès.");
+        // Affiche une alerte claire à l'utilisateur avec l'ID généré par l'Edge
+        alert(`Diagnostic exécuté avec succès !\nID d'archive : ${result.diagnostic_id}`);
       }
 
     } catch (error) {
-      console.error("Échec de la connexion avec le Worker Lexer_int :", error);
-      alert("Impossible de soumettre le diagnostic. Veuillez vérifier votre configuration réseau.");
+      console.error("Échec critique du routage :", error);
+      alert(`Impossible de joindre l'API d'intégration. Détails : ${error.message}`);
     }
   });
 </script>
