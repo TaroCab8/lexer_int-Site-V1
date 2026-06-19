@@ -216,38 +216,6 @@
   </div>
 </section>
 
-<script>
-  
-  // On intercepte la soumission de ton formulaire de diagnostic
-  document.getElementById('your-form-id').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
-
-    // On rassemble les données de l'entonnoir fractal (Exemple)
-    const payload = {
-      industry: document.querySelector('input[name="industry"]:checked')?.value,
-      value_stream: document.getElementById('value-stream-select')?.value,
-      systems: Array.from(document.querySelectorAll('input[name="systems"]:checked')).map(el => el.value)
-    };
-
-    // On envoie le payload JSON à ton Worker Cloudflare
-    try {
-      const response = await fetch('TON_URL_WORKERS_DEV_ICI', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        alert(`Diagnostic enregistré ! ID Anonyme : ${result.diagnostic_id}`);
-        // Ici, tu pourras rediriger l'utilisateur vers sa page de rapport personnalisé
-      }
-    } catch (error) {
-      console.error("Erreur lors de l'envoi du diagnostic :", error);
-    }
-  });
-</script>
-
 
 <section id="use-cases" class="section use-cases-section">
   <div class="wrap">
