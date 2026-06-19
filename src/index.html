@@ -17,7 +17,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/public/style.css" />
+<link rel="stylesheet" href="../public/style.css" />
 </head>
 <body>
 
@@ -38,10 +38,14 @@
       <a href="#diagnostic" data-en="Diagnostic" data-fr="Diagnostic">Diagnostic</a>
       <a href="#use-cases" data-en="Use Cases" data-fr="Cas d'Utilisation">Use Cases</a>
       <button id="lang-switch-btn" class="lang-btn">FR</button>
+      <a class="nav-btn-link mobile-only-contact" href="mailto:contact@lexerintegrations.com?subject=Inquiry">
+        <button class="nav-btn" data-en="CONTACT US" data-fr="NOUS CONTACTER">CONTACT US</button>
+      </a>
     </div>
 
+    
     <!--for v2 add specific subject logic for trazability-->
-    <a class="nav-btn-link" href="mailto:contact@lexerintegrations.com?subject=Inquiry">
+    <a class="nav-btn-link desktop-only-contact" href="mailto:contact@lexerintegrations.com?subject=Inquiry">
       <button class="nav-btn" data-en="CONTACT US" data-fr="NOUS CONTACTER">CONTACT US</button>
     </a>
   </div>
@@ -180,7 +184,15 @@
               <label>Contact Email</label>
               <input type="email" name="email" class="form-control" placeholder="target@organization.com" required>
             </div>
-
+            <div class="form-group">
+              <label>Industry</label>
+              <select name="targetSystem" class="form-control" required>
+                <option value="">Select Sector...</option>
+                <option value="AEREOSPACE">Aereospace</option>
+                <option value="INDUSTRY">Industrial</option>
+                <option value="FINTECH">Fintech</option>
+              </select>
+            </div>
             <div class="form-group">
               <label>Primary System</label>
               <select name="targetSystem" class="form-control" required>
@@ -205,42 +217,37 @@
 </section>
 
 <script>
-  // Interactive AJAX routing so the user doesn't leave the view during validation testing
-  document.getElementById('runtime-diagnostic-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const alertBox = document.getElementById('form-alert');
-    alertBox.className = 'alert-box';
-    alertBox.style.display = 'none';
+  
+  // On intercepte la soumission de ton formulaire de diagnostic
+  document.getElementById('your-form-id').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
 
-    const formData = {
-      email: this.email.value,
-      targetSystem: this.targetSystem.value,
-      notes: this.notes.value
+    // On rassemble les données de l'entonnoir fractal (Exemple)
+    const payload = {
+      industry: document.querySelector('input[name="industry"]:checked')?.value,
+      value_stream: document.getElementById('value-stream-select')?.value,
+      systems: Array.from(document.querySelectorAll('input[name="systems"]:checked')).map(el => el.value)
     };
 
+    // On envoie le payload JSON à ton Worker Cloudflare
     try {
-      const response = await fetch(this.action, {
+      const response = await fetch('TON_URL_WORKERS_DEV_ICI', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       });
-      
+
       const result = await response.json();
-      
-      if (response.ok) {
-        alertBox.textContent = `[SUCCESS] ${result.message}`;
-        alertBox.classList.add('success');
-        this.reset();
-      } else {
-        alertBox.textContent = `[FAULT] ${result.error}`;
-        alertBox.classList.add('error');
+      if (result.success) {
+        alert(`Diagnostic enregistré ! ID Anonyme : ${result.diagnostic_id}`);
+        // Ici, tu pourras rediriger l'utilisateur vers sa page de rapport personnalisé
       }
-    } catch (err) {
-      alertBox.textContent = '[FAIL] Engine offline. Ensure server.js is running locally on port 3000.';
-      alertBox.classList.add('error');
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du diagnostic :", error);
     }
   });
 </script>
+
 
 <section id="use-cases" class="section use-cases-section">
   <div class="wrap">
@@ -342,6 +349,13 @@
           <p data-en="Took over a stalled MES project, stabilised it through phased iterations, and achieved full adoption – from 0% to 90% usage." data-fr="A pris en charge un projet MES en difficulté, l'a stabilisé grâce à des itérations progressivas et a atteint une adoption complète – de 0% à 90% d'utilisation.">Took over a stalled MES project, stabilised it through phased iterations, and achieved full adoption – from 0% to 90% usage.</p>
           <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
         </div>
+        <!-- Pagination -->
+        <div id="cases-pagination" class="pagination-wrapper">
+          <button id="prev-page-btn" class="pagination-btn" disabled>←</button>
+          <span id="page-indicator" class="page-indicator">1 / 3</span>
+          <button id="next-page-btn" class="pagination-btn">→</button>
+        </div>
+        
 
     </div>
   </div>
@@ -365,7 +379,9 @@
     </div>
   </div>
 </section>
-
+<div class="scroll-top-wrapper">
+  <button id="scroll-top-btn" class="scroll-top-btn" data-en="Back to Top ↑" data-fr="Retour en Haut ↑">Back to Top ↑</button>
+</div>
 <footer class="footer">
   <div class="wrap footer-grid">
     <div class="footer-brand-column">
@@ -375,7 +391,7 @@
     <div class="footer-nav-column">
       <h4>PRACTICE NETWORKS</h4>
       <div class="footer-links-social">
-        <a href="https://linkedin.com/company/lexer-integrations" target="_blank" class="footer-link">
+        <a href="https://www.linkedin.com/company/lexerintegrations" target="_blank" class="footer-link">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"  ><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
         </a>
       <a href="https://linkedin.com/company/syntasys-labs" target="_blank" class="footer-link">
@@ -387,13 +403,13 @@
       <div class="footer-links-social">
         <a href="https://linkedin.com/company/duomo-group" target="_blank" class="footer-link">  
         
-          <img src="./media/duomo-group-logo.png" alt="Duomo Group" class="footer-logo-img">
+          <img src="/public/media/duomo-group-logo.png" alt="Duomo Group" class="footer-logo-img">
       
         </a>
       
         <a href="https://linkedin.com/company/duomo-group" target="_blank" class="footer-link">
       
-          <img src="./media/Syntasys_logo.png" alt="Syntasys Labs" class="footer-logo-img" style="height: 14px;">
+          <img src="/public/media/Syntasys_logo.png" alt="Syntasys Labs" class="footer-logo-img" style="height: 14px;">
       
         </a>
     </div>
