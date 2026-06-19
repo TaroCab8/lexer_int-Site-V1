@@ -179,7 +179,7 @@
         <div class="diagnostic-form-container">
           <div id="form-alert" class="alert-box"></div>
           
-          <form id="runtime-diagnostic-form" action="http://localhost:3000/api/diagnostic" method="POST">
+          <form id="runtime-diagnostic-form"  method="POST">
             <div class="form-group">
               <label>Contact Email</label>
               <input type="email" name="email" class="form-control" placeholder="target@organization.com" required>
@@ -431,7 +431,7 @@
 
 <script>
   // 1. Déclare l'URL de ton Worker API que tu viens de copier
-  const WORKER_URL = "https://*-lexerintegrations.lautacabrera.workers.dev.workers.dev";
+  const WORKER_URL = "https://lexerintegrations.lautacabrera.workers.dev";
 
   // 2. On écoute la soumission de ton formulaire de diagnostic
   document.getElementById('runtime-diagnostic-form').addEventListener('submit', async (event) => {
