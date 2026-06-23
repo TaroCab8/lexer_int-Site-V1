@@ -8,10 +8,83 @@
 </head>
 <body>
 <header class="page-header"><div class="wrap"><div class="kicker">SYSTEM CAPABILITIES</div><h1>ORCHESTRATION SERVICES</h1></div></header>
+
+
+
+
+
 <main class="content-block"><div class="wrap"><div class="map-scroll">
   <div class="pm-module"><div class="pm-id">SVC_01</div><h3>Data Engineering</h3><p>Design of deterministic schemas for SAP, Oracle, and complex enterprise warehouse matrices.</p><div class="pm-route"></div></div>
   <div class="pm-module"><div class="pm-id">SVC_02</div><h3>Edge/MES Linkage</h3><p>High-reliability synchronization pipelines between shop floor systems and ledger runtimes.</p><div class="pm-route"></div></div>
   <div class="pm-module"><div class="pm-id">SVC_03</div><h3>API Architecture</h3><p>Transactional integrity engineering across asynchronous network endpoints.</p><div class="pm-route"></div></div>
-</div></div></main>
+</div>
+
+<button onclick="openModal('solutions')">Voir nos Solutions</button>
+</div>
+
+
+
+</main>
+
+
+<div id="a4-modal" class="modal-overlay">
+  <div class="a4-sheet">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div id="modal-body">
+      
+    </div>
+  </div>
+</div>
+
+<script>
+
+const contentMap = {
+  methodology: `[<div class="methodology-content"><h1>METHODOLOGY</h1>...</div>]`,
+  solutions: `<div class="solutions-content">
+  <h1>FROM DIAGNOSTIC TO RESOLUTION</h1>
+  <div class="solutions-grid">
+    <div class="package-card">
+      <h2>BASIC</h2>
+      <p>€15,000 + €12,000</p>
+      <ul>
+        <li>Targeted cartography</li>
+        <li>One anomaly resolved</li>
+      </ul>
+    </div>
+    <div class="package-card">
+      <h2>ADVANCED</h2>
+      <p>€35,000</p>
+      <ul>
+        <li>Complete dependency map</li>
+        <li>Severity-scored register</li>
+      </ul>
+    </div>
+    <div class="package-card">
+      <h2>ENTERPRISE</h2>
+      <p>€45,000 — €65,000+</p>
+      <ul>
+        <li>Full Shadow-Organ Protocol</li>
+        <li>Zero-downtime guarantee</li>
+      </ul>
+    </div>
+  </div>
+</div>`,
+  cases: `[Carousel des Études de Cas]`
+};
+
+  function openModal(type) {
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = contentMap[type]; // Charge le contenu
+    document.getElementById('a4-modal').style.display = 'block';
+  }
+  function closeModal() {
+    document.getElementById('a4-modal').style.display = 'none';
+  }
+</script>
+<script src="./app.js" ></script>
+
 </body>
+
+
+
 </html>

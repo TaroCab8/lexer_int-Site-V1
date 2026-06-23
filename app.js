@@ -158,5 +158,76 @@ if (scrollTopBtn) {
 // Initial runtime boot sequence allocation
 updatePagination();
 
+
+/// --- 5.0 NEW: Modal Pop-Up System ---
+
+const contentMap = {
+  methodology: `[<div class="methodology-content"><h1>METHODOLOGY</h1>...</div>]`,
+  solutions: `[<div class="solutions-content">
+  <h1>FROM DIAGNOSTIC TO RESOLUTION</h1>
+  <div class="solutions-grid">
+    <div class="package-card">
+      <h2>BASIC</h2>
+      <p>€15,000 + €12,000</p>
+      <ul>
+        <li>Targeted cartography</li>
+        <li>One anomaly resolved</li>
+      </ul>
+    </div>
+    <div class="package-card">
+      <h2>ADVANCED</h2>
+      <p>€35,000</p>
+      <ul>
+        <li>Complete dependency map</li>
+        <li>Severity-scored register</li>
+      </ul>
+    </div>
+    <div class="package-card">
+      <h2>ENTERPRISE</h2>
+      <p>€45,000 — €65,000+</p>
+      <ul>
+        <li>Full Shadow-Organ Protocol</li>
+        <li>Zero-downtime guarantee</li>
+      </ul>
+    </div>
+  </div>
+</div>]`,
+  cases: `[Carousel des Études de Cas]`
+};
+
+function openModal(type) {
+  //const modalBody = document.getElementById('modal-body');
+  //modalBody.innerHTML = contentMap[type]; // Charge le contenu
+  //document.getElementById('a4-modal').style.display = 'block';
+  document.getElementById('modal-body').innerHTML = type;
+  document.getElementById('a4-modal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('a4-modal').style.display = 'none';
+}
+
+/// ---6.0 NEW: Interactive Use cases ---
+
+
+const studies = [
+  { 
+    title: "Newrest - Zero Downtime Migration",
+    context: "Global airline catering group.",
+    challenge: "ERP scaling from artisanal to industrial.",
+    action: "Shadow-Organ Protocol.",
+    result: "50% revenue sustained, Zero bugs."
+  }
+  // Ajouter les autres cas ici
+];
+
+let currentIndex = 0;
+
+function showStudy(index) {
+  const modalBody = document.getElementById('modal-body');
+  const s = studies[index];
+  modalBody.innerHTML = `<h3>${s.title}</h3><p>${s.context}</p>...`;
+}
+
     
 });

@@ -38,7 +38,7 @@
       <a href="#diagnostic" data-en="Diagnostic" data-fr="Diagnostic">Diagnostic</a>
       <a href="#use-cases" data-en="Use Cases" data-fr="Cas d'Utilisation">Use Cases</a>
       <button id="lang-switch-btn" class="lang-btn">FR</button>
-      <a class="nav-btn-link mobile-only-contact" href="mailto:contact@lexerintegrations.com?subject=Inquiry">
+      <a class="nav-btn-link mobile-only-contact" href="mailto:contact@lexerintegrations.com?subject=Question">
         <button class="nav-btn" data-en="CONTACT US" data-fr="NOUS CONTACTER">CONTACT US</button>
       </a>
     </div>
@@ -66,7 +66,7 @@
   <div class="wrap hero-grid">
     <div class="hero-text-block">
       <div class="hero-kicker cascading-text" data-en="OPERATIONAL ORCHESTRATION · SYSTEMS COHERENCE" data-fr="ORCHESTRATION OPÉRATIONNELLE · COHÉRENCE DES SYSTÈMES">OPERATIONAL ORCHESTRATION · SYSTEMS COHERENCE</div>
-      <h1 class="cascading-text"  data-en="FROM FRAGMENTATION TO ALIGNMENT." data-fr="DE FRAGMENTATION À ALIGNEMENT.">FROM<br><span>FRAGMENTATION</span><br>TO ALIGNMENT.</h1>
+      <h1 class="cascading-text"  data-en="FROM FRAGMENTATION TO ALIGNMENT." data-fr="DE LA FRAGMENTATION À L'HARMONIE.">FROM<br><span>FRAGMENTATION</span><br>TO ALIGNMENT.</h1>
       <p class="hero-copy cascading-text" data-fr="Lexer_int intervient à chaque niveau de la complexité opérationnelle; du module isolé à l'écosystème complet. Cartographie, conception, intégration, transformation continue : une méthode unique, applicable à toutes les échelles."  data-en="Lexer_int operates at every level of operational complexity; from the isolated module to the complete ecosystem. Mapping, design, integration, continuous transformation: one method, applicable at every scale.">
         Lexer_int operates at every level of operational complexity; from the isolated module to the complete ecosystem. Mapping, design, integration, continuous transformation: one method, applicable at every scale.
       </p>
@@ -75,8 +75,8 @@
         <a href="#diagnostic" class="btn-main-link">
           <button class="btn-main" data-en="DIAGNOSE CURRENT STATE" data-fr="DIAGNOSTIQUER L'ÉTAT ACTUEL">DIAGNOSE CURRENT STATE</button>
         </a>
-        <a href="#solutions" class="btn-link"> 
-          <button class="btn-link-bg" data-en="Methodology → " data-fr="Méthodologie →">Methodology → </button> </a>
+        <a class="btn-link"> 
+          <button class="btn-link-bg" data-en="Methodology → " data-fr="Méthodologie →" onclick="openModal('coming')">Methodology → </button> </a>
       </div>
     </div>
 
@@ -108,7 +108,7 @@
     <div class="section-head">
       <div>
         <div class="kicker" data-en="OPERATIONAL TOPOLOGY" data-fr="TOPOLOGIE OPÉRATIONNELLE">OPERATIONAL TOPOLOGY</div>
-        <h2 data-en="ENGINEERED COHERENCE." data-fr="CONÇUE COHÉRENCE.">ENGINEERED<br>COHERENCE.</h2>
+        <h2 data-en="ENGINEERED COHERENCE." data-fr="CONCEVOIR LA COHÉRENCE.">ENGINEERED<br>COHERENCE.</h2>
       </div>
       <div class="section-side" data-en="Systems accumulate entropy over time. Lexer_int introduces orchestration, synchronization and infrastructure clarity across operational environments." data-fr="Les systèmes accumulent de l'entropie au fil du temps. Lexer_int introduit l'orchestration, la synchronisation et la clarté de l'infrastructure à travers les environnements opérationnels.">
         Systems accumulate entropy over time. Lexer_int introduces orchestration, synchronization and infrastructure clarity across operational environments.
@@ -123,9 +123,9 @@
           Dependency mapping, process visibility and operational topology before transformation begins.
         </p>
         <div class="solution-download-zone" style="margin-top: 20px;">
-          <a href="docs/lexer_business_traceability_v1.pdf" download class="download-spec-btn">
-            <span class="btn-text-node" data-en="DOWNLOAD FLYER (PDF)" data-fr="TÉLÉCHARGER LE FLYER (PDF)">DOWNLOAD FLYER (PDF)</span>
-            <span class="btn-icon-node">↓</span>
+          <a onclick="openModal('coming')" download class="download-spec-btn">
+            <span class="btn-text-node"  data-en="Find out more" data-fr="En savoir plus">Find out more</span>
+            <span class="btn-icon-node"><img src="./media/plusIcon.png" class="plus-icon-btn" alt="Download"></span>
           </a>
         </div>
         <div class="pm-route"></div>
@@ -138,9 +138,9 @@
           ERP, APIs, MES and operational systems synchronized into coherent infrastructure routes and standardized flows.
         </p>
         <div class="solution-download-zone" style="margin-top: 20px;">
-          <a href="docs/lexer_business_traceability_v1.pdf" download class="download-spec-btn">
-            <span class="btn-text-node" data-en="DOWNLOAD FLYER (PDF)" data-fr="TÉLÉCHARGER LE FLYER (PDF)">DOWNLOAD FLYER (PDF)</span>
-            <span class="btn-icon-node">↓</span>
+          <a onclick="openModal('coming')" download class="download-spec-btn">
+            <span class="btn-text-node" data-en="Find out more" data-fr="En savoir plus">Find out more</span>
+            <span class="btn-icon-node"><img src="./media/plusIcon.png" class="plus-icon-btn" alt="Download"></span>
           </a>
         </div>
         <div class="pm-route"></div>
@@ -153,9 +153,9 @@
           Migration resilience, operational continuity and infrastructure stabilization for industrial environments.
         </p>
         <div class="solution-download-zone" style="margin-top: 20px;">
-          <a href="docs/lexer_business_traceability_v1.pdf" download class="download-spec-btn">
-            <span class="btn-text-node" data-en="DOWNLOAD FLYER (PDF)" data-fr="TÉLÉCHARGER LE FLYER (PDF)">DOWNLOAD FLYER (PDF)</span>
-            <span class="btn-icon-node">↓</span>
+          <a onclick="openModal('coming')" download class="download-spec-btn">
+            <span class="btn-text-node" data-en="Find out more" data-fr="En savoir plus">Find out more</span>
+            <span class="btn-icon-node"><img src="./media/plusIcon.png" class="plus-icon-btn" alt="Download"></span>
           </a>
         </div>
         <div class="pm-route"></div>
@@ -169,7 +169,7 @@
     <div class="grid-2col">
       <div>
         <div class="kicker" data-en="SYSTEMIC ENTROPY EVALUATION" data-fr="ÉVALUATION DE L'ENTROPIE SYSTÉMIQUE">SYSTEMIC ENTROPY EVALUATION</div>
-        <h2 data-en="LAUNCH RUNTIME DIAGNOSTIC." data-fr="LANCER LE DIAGNOSTIC EN TEMPS RÉEL.">LAUNCH RUNTIME<br>DIAGNOSTIC.</h2>
+        <h2 data-en="LAUNCH RUNTIME DIAGNOSTIC." data-fr="LANCER VOTRE DIAGNOSTIC">LAUNCH RUNTIME<br>DIAGNOSTIC.</h2>
         <p class="hero-copy" style="color: var(--muted);" data-en="Before the next integration. Before the migration scope locks. Before the transformation programme starts. Know what you have - and what it can become." data-fr=" Avant d'intégrer. Avant de migrer. Avant de toucher ce que personne ne comprend vraiment. Connaissez ce que vous avez - et ce qu'il peut devenir.">
           Before the next integration. Before the migration scope locks. Before the transformation programme starts. Know what you have - and what it can become.
         </p>
@@ -221,7 +221,7 @@
   <div class="wrap">
     <div class="use-cases-header">
       <div class="kicker" data-en="PROVEN EXPERTISE" data-fr="EXPERTISE PRUVÉE">PROVEN EXPERTISE</div>
-      <h2 data-en="SYSTEM USE CASES" data-fr="CAS D'UTILISATION DU SYSTÈME">SYSTEM USE CASES</h2>
+      <h2 data-en="SYSTEM USE CASES" data-fr="CAS D'UTILISATION">SYSTEM USE CASES</h2>
       
       <div class="filter-wrapper">
         <button class="filter-btn active" data-filter="all">All Ecosystems</button>
@@ -237,85 +237,78 @@
       <div class="case-card" data-category="conception" >
         <div class="case-node-id" data-en="CASE01  // GLOBAL ERP" data-fr="CASE01  // GLOBAL ERP">CASE01  // GLOBAL ERP</div>
         <h3 data-en="Evolutions for Inflight Catering operation" data-fr="Évolutions pour les opération de restauration à bord">Evolutions for Inflight Catering operation</h3>
-        <p data-en="Evolved a mission‑critical ERP module across 55+ countries – new features, performance optimisation, backlog management, zero critical bugs." data-fr="Evolution d'un module ERP mission‑critical à travers 55+ pays – nouvelles fonctionnalités, optimisation des performances, gestion du backlog, zéro bug critique.">Evolved a mission‑critical ERP module across 55+ countries – new features, performance optimisation, backlog management, zero critical bugs.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Evolved a mission‑critical ERP module across 55+ countries – new features, performance optimisation, backlog management, zero critical bugs." data-fr="Modernisation d'un module ERP critique pour 55+ pays – nouvelles fonctionnalités, optimisation des performances, gestion du backlog, zéro bug critique">Evolved a mission‑critical ERP module across 55+ countries – new features, performance optimisation, backlog management, zero critical bugs.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
       
       <div class="case-card" data-category="conception" >
         <div class="case-node-id" data-en="CASE02  // Low‑Cost Airline" data-fr="CASE02  // Low‑Cost Airline">CASE02  // Low‑Cost Airline</div>
         <h3 data-en="Scheduling Automation" data-fr="Automatisation de la Planification">Scheduling Automation</h3>
-        <p data-en="Automated chaotic Excel‑based flight scheduling, deployed across multiple countries with zero regression." data-fr="Automatisation et integration d'un planning de vols basé sur Excel chaotique, déployé à travers plusieurs pays avec zéro régression.">Automated chaotic Excel‑based flight scheduling, deployed across multiple countries with zero regression.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Automated chaotic Excel‑based flight scheduling, deployed across multiple countries with zero regression." data-fr="Automatisation et integration d'un flux de planification de production, déployé à travers plusieurs pays avec zéro régression.">Automated chaotic Excel‑based flight scheduling, deployed across multiple countries with zero regression.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="discovery" >
         <div class="case-node-id" data-en="CASE03  // Legacy Scheduling System" data-fr="CASE03  // Legacy Scheduling System">CASE03  // Legacy Scheduling System</div>
         <h3 data-en="Documentation & Debug" data-fr="Documentation & Débogage">Documentation & Debug</h3>
-        <p data-en="Reversed a black‑box legacy system, enabling the first successful bug fixes in years." data-fr="Rétro-ingénierie d'un système hérité black box, permettant la documentation et la livraison des premiers correctifs de bugs réussis en années.">Reversed a black‑box legacy system, enabling the first successful bug fixes in years.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Reversed a black‑box legacy system, enabling the first successful bug fixes in years." data-fr="Cartographie complète d'un système legacy; documentation, correction de bugs critiques, autonomisation de l'équipe">Reversed a black‑box legacy system, enabling the first successful bug fixes in years.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="conception" >
         <div class="case-node-id" data-en="CASE04  // Global Scheduling System" data-fr="CASE04  // Global Scheduling System">CASE04  // Global Scheduling System</div>
         <h3 data-en="Integration flows" data-fr="Flux d'Intégration">Integration flows</h3>
-        <p data-en="Reduced database replication lag cycles across distributed cross-dock systems from 22 minutes to 4.1 seconds." data-fr="A réduit les cycles de latence de réplication de base de données à travers les systèmes de cross-dock distribués de 22 minutes à 4.1 secondes.">Reduced database replication lag cycles across distributed cross-dock systems from 22 minutes to 4.1 seconds.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Created real-time integration solutions for major airlines – data standardization, global deployment." data-fr="Création de solutions d'intégration en temps réel pour des compagnies aériennes majeures – normalisation des données, déploiement mondial."></p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="orchestration" >
         <div class="case-node-id" data-en="CASE05  // High‑Risk Airline System" data-fr="CASE05  // High‑Risk Airline System">CASE05  // High‑Risk Airline System</div>
         <h3 data-en="Migration" data-fr="Migration">Migration</h3>
-        <p data-en="Executed a zero‑downtime system migration for an 80‑flight‑per‑day operation, with no bugs." data-fr="A exécuté une migration de système zéro temps d'arrêt pour une opération de 80 vols par jour, sans bug.">Executed a zero‑downtime system migration for an 80‑flight‑per‑day operation, with no bugs.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Executed a zero‑downtime system migration for an 80‑flight‑per‑day operation, with no downtime." data-fr="A exécuté une migration de système zéro temps d'arrêt pour une opération de 80 vols par jour, sans temps d'arrêt.">Executed a zero‑downtime system migration for an 80‑flight‑per‑day operation, with no downtime.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="orchestration" >
-        <div class="case-node-id" data-en="CASE06  // QHSE Compliance"  data-fr="CASE06  // QHSE Compliance">CASE06  // QHSE Compliance</div>
+        <div class="case-node-id" data-en="CASE06  // Food Labels"  data-fr="CASE06  // Food Labels">CASE06  // Food Labels</div>
         <h3 data-en="High‑Throughput Label Printing Program" data-fr="Programme d'Impression de Labels à Haut Débit">High‑Throughput Label Printing Program</h3>
-        <p data-en="Delivered a scalable batch‑printing solution for thousands of labels, with zero production disruption." data-fr="A livré une solution d'impression de lots évolutive pour des milliers de labels, avec zéro perturbation de la production.">Delivered a scalable batch‑printing solution for thousands of labels, with zero production disruption.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Delivered a scalable batch‑printing solution for thousands of labels, with zero production disruption." data-fr="Programme d'impression haut débit pour des milliers d'étiquettes, avec zéro perturbation de la production.">Delivered a scalable batch‑printing solution for thousands of labels, with zero production disruption.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="conception" >
         <div class="case-node-id" data-en="CASE07  // Airport contracting requirement" data-fr="CASE07  // Airport contracting requirement">CASE07  // Airport contracting requirement</div>
         <h3 data-en="API Integration" data-fr="Intégration d'API">API Integration</h3>
-        <p data-en="Delivered a mandatory compliance API ahead of competitors, securing the airport operating license." data-fr="A livré une API de conformité obligatoire en avance sur les concurrents, sécurisant la licence d'exploitation de l'aéroport.">Delivered a mandatory compliance API ahead of competitors, securing the airport operating license.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
-      </div>
-
-      <div class="case-card" data-category="conception" >
-        <div class="case-node-id" data-en="CASE08  // Central Kitchen MES" data-fr="CASE08  // Central Kitchen MES">CASE08  // Central Kitchen MES</div>
-        <h3 data-en="Solution and ERP integration" data-fr="Solution et Intégration ERP">Solution and ERP integration</h3>
-        <p data-en="Reduced database replication lag cycles across distributed cross-dock systems from 22 minutes to 4.1 seconds." data-fr="A réduit les cycles de latence de réplication de base de données à travers les systèmes de cross-dock distribués de 22 minutes à 4.1 secondes.">Reduced database replication lag cycles across distributed cross-dock systems from 22 minutes to 4.1 seconds.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Delivered a mandatory compliance API ahead of competitors, securing the airport operating license." data-fr="Intégration API conforme aux exigences aéroportuaires – livraison rapide, zéro bug, licence opérationnelle sécurisée.">Delivered a mandatory compliance API ahead of competitors, securing the airport operating license.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="orchestration" >
         <div class="case-node-id" data-en="CASE08  // Global Platform Deployment" data-fr="CASE08  // Global Platform Deployment">CASE08  // Global Platform Deployment</div>
         <h3 data-en="Complex multi-country rollout" data-fr="Déploiement complexe multi-pays">Complex multi-country rollout</h3>
-        <p data-en="Coordinated a 40‑country tax platform rollout, scaling the team from 1 to 7 and achieving all KPIs." data-fr="A coordonné un déploiement de plateforme fiscale pour 40 pays, en échelonnant l'équipe de 1 à 7 et en atteignant tous les KPIs.">Coordinated a 40‑country tax platform rollout, scaling the team from 1 to 7 and achieving all KPIs.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Orchestrated the global rollout of a financial compliance platform across 40+ countries, scaled the delivery team from 14 to 100+ members, and delivered all programme KPIs on schedule." data-fr="">Coordinated a 40‑country tax platform rollout, scaling the team from 1 to 7 and achieving all KPIs.</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="discovery">
         <div class="case-node-id" data-en="CASE09  // FMCG ERP/MES" data-fr="CASE09  // FMCG ERP/MES">CASE09  // FMCG ERP/MES</div>
         <h3 data-en="Multi‑Site ERP/MES Transformation" data-fr="Transformation ERP/MES Multi‑Site">Multi‑Site ERP/MES Transformation</h3>
-        <p data-en="Baselined 8‑site ERP/MES landscape, harmonised master data, and de‑risked migration to Dynamics 365." data-fr="A établi un paysage ERP/MES pour 8 sites, harmonisé les données maîtres et réduit les risques de migration vers Dynamics 365.">Baselined 8‑site ERP/MES landscape, harmonised master data, and de‑risked migration to Dynamics 365.</p>
-        <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+        <p data-en="Proposed consulting services for a multi-site chocolate manufacturer: comprehensive mapping of the ERP/MES environment, data maturity analysis, and a roadmap for a secure migration to Dynamics 365" data-fr="Proposition d’accompagnement pour un groupe chocolatier multi‑sites. Cartographie complète du paysage ERP/MES, analyse de la maturité des données, et feuille de route pour une migration sécurisée vers Dynamics 365.">Proposed consulting services for a multi-site chocolate manufacturer: comprehensive mapping of the ERP/MES environment, data maturity analysis, and a roadmap for a secure migration to Dynamics 365</p>
+        <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="discovery">
           <div class="case-node-id" data-en="CASE10  // ESA OSIP – FDB" data-fr="CASE10  // ESA OSIP – FDB">CASE10  // ESA OSIP – FDB</div>
           <h3 data-en="Federated Digital Backbone (ESA OSIP)" data-fr="Réticulation Digitale Fédérée (ESA OSIP)">Federated Digital Backbone (ESA OSIP)</h3>
-          <p data-en="Semantic supply‑chain backbone for European space manufacturing – selected for ESA OSIP pitch." data-fr="Réticulation sémantique de la chaîne d'approvisionnement pour la fabrication spatiale européenne – sélectionnée pour la présentation ESA OSIP.">Semantic supply‑chain backbone for European space manufacturing – selected for ESA OSIP pitch.</p>
-          <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+          <p data-en="Semantic supply‑chain backbone for European space manufacturing – selected for ESA OSIP pitch." data-fr="Conception d'un backbone sémantique pour la supply chain spatiale européenne, sélectionné pour le pitch ESA OSIP.">Semantic supply‑chain backbone for European space manufacturing – selected for ESA OSIP pitch.</p>
+          <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
       </div>
 
       <div class="case-card" data-category="orchestration">
-        <div class="case-node-id" data-en="CASE08  // Central Kitchen MES" data-fr="CASE11  // Central Kitchen MES">CASE11  // Central Kitchen MES</div>
+        <div class="case-node-id" data-en="CASE11  // Central Kitchen MES" data-fr="CASE11  // Central Kitchen MES">CASE11  // Central Kitchen MES</div>
           <h3 data-en="Central Kitchen MES Replacement" data-fr="Remplacement du MES de la Cuisine Centrale">Central Kitchen MES Replacement</h3>
-          <p data-en="Took over a stalled MES project, stabilised it through phased iterations, and achieved full adoption – from 0% to 90% usage." data-fr="A pris en charge un projet MES en difficulté, l'a stabilisé grâce à des itérations progressivas et a atteint une adoption complète – de 0% à 90% d'utilisation.">Took over a stalled MES project, stabilised it through phased iterations, and achieved full adoption – from 0% to 90% usage.</p>
-          <a href="#" class="case-explore-link" data-en="Analyze Architectural Route →" data-fr="Analyser la Route Architecturale →">Analyze Architectural Route →</a>
+          <p data-en="Took over a stalled MES project, stabilised it through phased iterations, and achieved full adoption – from 0% to 90% usage." data-fr="Stabilisation d’un projet MES en difficulté – itérations progressives, adoption passée de 0 % à 90 %, projet clôturé sans nouvelles demandes après la version 3">Took over a stalled MES project, stabilised it through phased iterations, and achieved full adoption – from 0% to 90% usage.</p>
+          <a onclick="openModal('coming')" class="case-explore-link" data-en="More →" data-fr="Plus →">More →</a>
         </div>
         <!-- Pagination -->
         <div id="cases-pagination" class="pagination-wrapper">
@@ -342,8 +335,9 @@
     <h2>ENGAGE ORCHESTRATION PIPELINE.</h2>
     <p class="cta-subtitle">Select your engagement layer to synchronize your infrastructure models.</p>
     <div class="cta-actions">
-      <a href="https://calendly.com/lexer_int" target="_blank" class="btn-cta-link btn-outline">EXPLORING CALL</a>
-      <a href="mailto:contact@lexerintegrations.com?subject=Ready%20To%20Begin" class="btn-cta-link btn-solid">INIT</a>
+      <a href="mailto:contact@lexerintegrations.com?subject=Free Industry Study&body=[Indicate Industry]" class="btn-cta-link btn-outline" data-en="Receive an Industry Study →" data-fr="Recevoir une étude sectorielle →">Recevoir une étude sectorielle →</a>
+      <a href="https://calendly.com/lexer_int" target="_blank"  class="btn-cta-link btn-solid" data-en="Schedule a Call" data-fr="Planifier un appel">Planifier un appel</a>
+      
     </div>
   </div>
 </section>
@@ -354,15 +348,15 @@
   <div class="wrap footer-grid">
     <div class="footer-brand-column">
       <img src="./media/Lex_int-logo.png" alt="Lexer_int" class="footer-logo-img">
-      <p class="footer-parent-notice" data-en="Lexer Integrations is a service branch of Duomo Group, a holding for systems architecture and R&D (Syntasys Labs)." data-fr="un écosystème dédié à l'architecture des systèmes et à la R&D (Syntasys Labs).">Lexer Integrations is a service branch of Duomo Group, a holding for systems architecture and R&D (Syntasys Labs).</p>
+      <p class="footer-parent-notice" data-en="Lexer Integrations is a service branch of Duomo Group, a holding for systems architecture and R&D (Syntasys Labs)." data-fr="Lexer Integrations est la branche de services du Duomo Group, une holding d’architecture systèmes et de R&D (Syntasys Labs).">Lexer Integrations is a service branch of Duomo Group, a holding for systems architecture and R&D (Syntasys Labs).</p>
     </div>
     <div class="footer-nav-column">
-      <h4>PRACTICE NETWORKS</h4>
+      <h4>Connect</h4>
       <div class="footer-links-social">
         <a href="https://www.linkedin.com/company/lexerintegrations" target="_blank" class="footer-link">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"  ><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
         </a>
-      <a href="https://linkedin.com/company/syntasys-labs" target="_blank" class="footer-link">
+      <a href="https://x.com/lexer_int" target="_blank" class="footer-link">
     
           <svg width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M357.2 48L427.8 48 273.6 224.2 455 464 313 464 201.7 318.6 74.5 464 3.8 464 168.7 275.5-5.2 48 140.4 48 240.9 180.9 357.2 48zM332.4 421.8l39.1 0-252.4-333.8-42 0 255.3 333.8z"/></svg>
       </a>
@@ -375,7 +369,7 @@
       
         </a>
       
-        <a href="https://linkedin.com/company/duomo-group" target="_blank" class="footer-link">
+        <a href="https://duomo-group.com/#about us" target="_blank" class="footer-link">
       
           <img src="./media/Syntasys_logo.png" alt="Syntasys Labs" class="footer-logo-img" style="height: 14px;">
       
@@ -394,6 +388,14 @@
     <p>&copy; 2026 Duomo Group. All rights reserved.</p>
   </div>
 </footer>
+
+<div id="a4-modal" class="modal-overlay">
+  <div class="a4-sheet">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div id="modal-body">
+      </div>
+  </div>
+</div>
 
 <script src="./app.js"></script>
 
@@ -449,6 +451,66 @@
       alert(`Impossible de joindre l'API d'intégration. Détails : ${error.message}`);
     }
   });
+
+  // Separated; pop up logique
+
+
+const contentMap = {
+  methodology: `<div class="methodology-content">
+  <img src="../media/metho.png" alt="Lexer_int Architecture" class="solutions-image">
+</div>`,
+  solutions: `<div class="solutions-content">
+  <img src="../media/metho.png" alt="Lexer_int Architecture" class="solutions-image">
+</div>`,
+  cases: `<div class="carousel-container">
+  <div class="study-card" id="current-study">
+    <h3>Newrest Migration</h3>
+    <p>Global airline catering group. 55+ subsidiaries.</p>
+    <p><strong>Challenge:</strong> ERP scaling from artisanal to industrial.</p>
+    <p><strong>Action:</strong> SYNAPSE assessment & Shadow-Organ Protocol.</p>
+    <p><strong>Result:</strong> 50% revenue sustained · Zero production bugs.</p>
+  </div>
+
+  <div class="study-card" id="current-study">
+    
+    <p><strong>Challenge:</strong> ERP scaling from artisanal to industrial.</p>
+    <p><strong>Action:</strong> SYNAPSE assessment & Shadow-Organ Protocol.</p>
+    <p><strong>Result:</strong> 50% revenue sustained · Zero production bugs.</p>
+  </div>
+
+  <div class="study-card" id="current-study">
+    
+    <p><strong>Challenge:</strong> ERP scaling from artisanal to industrial.</p>
+    <p><strong>Action:</strong> SYNAPSE assessment & Shadow-Organ Protocol.</p>
+    <p><strong>Result:</strong> 50% revenue sustained · Zero production bugs.</p>
+  </div>
+
+  <div class="study-card" id="current-study">
+    
+    <p><strong>Challenge:</strong> ERP scaling from artisanal to industrial.</p>
+    <p><strong>Action:</strong> SYNAPSE assessment & Shadow-Organ Protocol.</p>
+    <p><strong>Result:</strong> 50% revenue sustained · Zero production bugs.</p>
+  </div>
+  
+  <div class="nav-buttons">
+    <button class="btn-nav" onclick="prevStudy()">← Précédent</button>
+    <button class="btn-nav" onclick="nextStudy()">Suivant →</button>
+  </div>
+</div>`,
+coming: `<div class="coming-soon-content">
+  <h3>Work in Progress</h3>
+  <img src="../media/WIP.png" alt="Coming Soon" class="coming-soon-image">`
+};
+
+  function openModal(type) {
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = contentMap[type]; // Charge le contenu
+    document.getElementById('a4-modal').style.display = 'block';
+  }
+  function closeModal() {
+    document.getElementById('a4-modal').style.display = 'none';
+    document.getElementsByClassName('hero')[0].style.filter = 'none'; // Réactive le flou
+  }
 </script>
 </body>
 </html>
