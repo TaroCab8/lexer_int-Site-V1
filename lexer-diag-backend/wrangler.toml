@@ -1,8 +1,11 @@
-name = "lexerintegrations"
-main = "src/index.js"
-compatibility_date = "2026-06-19"
-
-# Colle ton bloc KV ici :
-[[kv_namespaces]]
-binding = "LEXER_DIAG_KV"
-id = "59d49f0e87ea4633b1589becf425f16c"
+{
+  "name": "lexerintegrations",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-19",
+  "kv_namespaces": [
+    {
+      "binding": "LEXER_DIAG_KV",
+      "id": "59d49f0e87ea4633b1589becf425f16c"
+    }
+  ]
+}
